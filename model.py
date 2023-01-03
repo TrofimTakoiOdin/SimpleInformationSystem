@@ -2,30 +2,34 @@ import csv
 
 def get_list():
     with open('file.csv', encoding="utf8") as csvfile:
-        reader = csv.reader(csvfile, delimiter=';', )
-        # title = next(reader)
+        reader = csv.reader(csvfile, delimiter=';')
+        next(reader)
         return list(reader)
 
 
-def add_emloyee_to_list(employees):
+def add_emloyee_to_list(employee):
     with open('file.csv', 'a', encoding="utf8", newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=';')
-        writer.writerow(employees)
+        writer.writerow(employee)
 
 
-def update_employe(number, string):
+def update_employe(number, lst):
     flag = True
     while flag:
         try:
             with open('file.csv', 'r', encoding="utf8", newline='') as csvfile:
                 reader = csv.reader(csvfile, delimiter=';')
                 data = list(reader)
-                data[number] = string
+                data[number] = lst
+                print("Отладка", data[number])
+                print("Отладка", data)
+
             with open('file.csv', 'w', encoding="utf8", newline='') as csvfile:
-                writer = csv.writer(csvfile, delimiter=';')
+                writer = csv.writer(csvfile, delimiter=";")
                 for i in data:
                     writer.writerow(i)
-                flag = False
+            flag = False
+
         except IndexError:
             print("Попробуйте снова!")
             flag = False

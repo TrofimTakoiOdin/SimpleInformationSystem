@@ -1,3 +1,5 @@
+import sys
+
 import model
 import view
 import logging
@@ -25,16 +27,16 @@ def main():
 
         elif userIn == 2:
             logging.info("Выбрано добавление сотрудника")
-            data = view.add_emloyes()
-            model.add_emloey_to_list(data)
+            data = view.add_emloyees()
+            model.add_emloyee_to_list(data)
             logging.info("Сотрудник добавлен")
             view.user_exit()
 
         elif userIn == 3:
             logging.info("Выбрано изменить запись")
-            change, string = view.update_emploey()
-            print(change, string)
-            model.update_employe(change, string)
+            change, lst = view.update_employee()
+            print(change, lst)
+            model.update_employe(change, lst)
             logging.info("Изменения внесены")
             view.user_exit()
 
@@ -62,6 +64,10 @@ def main():
             model.import_list_csv()
             logging.info("Список сотрудников из csv импортирован")
             view.user_exit()
+
+        elif userIn == 0:
+            logging.info("Выход из меню")
+            sys.exit()
 
         else:
             print("Произошла неизвестная ошибка")
